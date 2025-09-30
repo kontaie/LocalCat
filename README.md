@@ -8,7 +8,7 @@
 - Broadcast messages to all clients or send to a specific client
 - Can be used as a library in your own C++ projects
 
-## Getting Started
+## Getting Started (demo can be found in /demo)
 
 ### Server
 1. Place `src/server.cpp` in your project.
