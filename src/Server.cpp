@@ -75,7 +75,7 @@ void Server::handleClient(clientInfo clientSocket) {
         int received = recv(clientSocket.socket, buffer, sizeof(buffer), 0);
         if (received > 0) {
             buffer[received] = '\0';
-            sendAll(buffer);
+            sendAll(clientSocket.socket, buffer);
         }
         else {
             break;
@@ -92,9 +92,12 @@ void Server::sendMessage(const std::string& msg, clientInfo clientSocket) {
     }
 }
 
-void Server::sendAll(const std::string& msg) {
+void Server::sendAll(SOCKET sender, const std::string& msg) {
     for (int i = 0; i < clients.size(); i++) {
-        std::string formatted = std::format("[ Client {} ] : {}", i, msg);
+        if (clients[i].socket == sender) {
+            continue;
+        }
+        std::string formatted = std::format("\n[ Client {} ] : {}", i, msg);
         if (send(clients[i].socket, formatted.c_str(), (int)formatted.size(), 0) == SOCKET_ERROR) {
             std::cerr << "Failed to send message to " << clients[i].ip << ":" << clients[i].port << std::endl;
         }
