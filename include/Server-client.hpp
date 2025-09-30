@@ -32,10 +32,10 @@ public:
     void stop();
 
     void sendMessage(const std::string& msg, clientInfo clientSocket);
-    void sendAll(const std::string& msg);
+    void sendAll(SOCKET sender, const std::string& msg);
 
 private:
-    std::vector<clientInfo> clients; 
+    std::vector<clientInfo> clients;
     SOCKET serverSock = INVALID_SOCKET;
     SOCKADDR_IN sockAddr{};
     bool running = false;
@@ -51,7 +51,6 @@ public:
         if (WSAStartup(MAKEWORD(2, 2), &Ws) != 0) {
             std::cerr << "WSAStartup failed\n";
         }
-
         clientSock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
         if (clientSock == INVALID_SOCKET) {
             throw std::runtime_error("Failed to create client socket");
