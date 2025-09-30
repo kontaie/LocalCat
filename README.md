@@ -27,3 +27,6 @@ Feel free to fork the repository and submit pull requests. Contributions, issues
 
 ## License
 This project is open-source. Feel free to use it in your projects.
+
+<img width="572" height="780" alt="image" src="https://github.com/user-attachments/assets/f6cdafcf-5570-4227-9d5f-80119aec7694" />
+
